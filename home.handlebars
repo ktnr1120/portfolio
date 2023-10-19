@@ -6,3 +6,11 @@
     <input type="file" name="imageFile" accept="image/*" />
     <input type="submit" />
 </form>
+
+<div>
+    {{#each rows}}
+    <p>↓に保存された画像が出力されます。</p>
+    <img src={{this.imageName}} alt="" />
+    <p>{{this.imageName}}</p>
+    {{/each}}
+</div>
