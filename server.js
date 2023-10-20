@@ -5,6 +5,7 @@ const app = express();
 const mysql = require("mysql");
 const { constants } = require("buffer");
 const auth = require("./routes/auth");
+const { query } = require('express-validator');
 
 app.use(express.json());
 app.use("/auth", auth);
