@@ -5,10 +5,12 @@ const app = express();
 const mysql = require("mysql");
 const { constants } = require("buffer");
 const auth = require("./routes/auth");
-const { query } = require('express-validator');
+const post = require("./routes/post");
+//const { query } = require('express-validator');
 
 app.use(express.json());
 app.use("/auth", auth);
+app.use("/post", post);
 
 const PORT = 8000;
 
@@ -20,7 +22,7 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-//connention pool(DBに最初から接続しておく。オープンな状態)
+//connection pool(DBに最初から接続しておく。オープンな状態)
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: "localhost",
@@ -28,6 +30,7 @@ const pool = mysql.createPool({
     password: "",
     database: "memory",
 });
+
 
 //DBへの画像送信
 app.get("/", (req, res) => {
